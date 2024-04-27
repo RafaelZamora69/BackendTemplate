@@ -1,0 +1,23 @@
+﻿version: '3.4'
+
+services:
+  presentation:
+    image: presentation
+    build:
+      context: .
+      dockerfile: Presentation/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+    ports:
+      - "8080:8080"
+  mariadb:
+    image: mariadb:latest
+    restart: always
+    ports:
+      - "3310:3306"
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 1
+      MARIADB_ROOT_PASSWORD: ""
+    volumes:
+      - ./mariadb:/var/lib/mysql

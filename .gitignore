@@ -1,0 +1,4 @@
+mariadb
+**/obj
+**/bin
+.idea
