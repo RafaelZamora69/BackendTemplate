@@ -14,6 +14,10 @@ builder.Services.AddDbContext<MariaDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
