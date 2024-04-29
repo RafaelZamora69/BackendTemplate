@@ -2,7 +2,7 @@ using System.Text;
 using Infrastructure.DataContext;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Tokens;using Presentation.Setup;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +33,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ClockSkew = TimeSpan.Zero
         };
     });
+
+builder.Services.ConfigureDependencyInjectionContainer();
+builder.Services.ConfigureMediatR();
 
 var app = builder.Build();
 

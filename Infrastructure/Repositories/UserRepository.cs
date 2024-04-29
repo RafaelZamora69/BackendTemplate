@@ -1,12 +1,19 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
+using Infrastructure.DataContext;
 
 namespace Infrastructure.Repositories;
 
-public class UserRepository : IUserRepository
+public class UserRepository(MariaDbContext context) : IUserRepository
 {
-    public void CreateUser(User user)
+    public async Task<User> CreateUser(User user)
     {
-        throw new NotImplementedException();
+
+        await context.Users
+            .AddAsync(user);
+
+        await context.SaveChangesAsync();
+
+        return user;
     }
 }
