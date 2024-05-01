@@ -9,8 +9,6 @@ namespace Infrastructure.Auth;
 
 public sealed class JwtManager(IConfiguration configuration)
 {
-    
-    
     public string CreateToken(User user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -20,7 +18,7 @@ public sealed class JwtManager(IConfiguration configuration)
             Subject = new ClaimsIdentity(new Claim[]
             {
                 new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new(ClaimTypes.Name, user.Name)
+                new(ClaimTypes.Name, user.Username)
             }),
             Expires = DateTime.UtcNow.AddHours(1),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), 
@@ -32,4 +30,5 @@ public sealed class JwtManager(IConfiguration configuration)
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
+    
 }

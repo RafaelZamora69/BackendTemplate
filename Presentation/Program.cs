@@ -2,7 +2,9 @@ using System.Text;
 using Infrastructure.DataContext;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;using Presentation.Setup;
+using Microsoft.IdentityModel.Tokens;
+using Presentation.Middlewares;
+using Presentation.Setup;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,18 +38,30 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.ConfigureDependencyInjectionContainer();
 builder.Services.ConfigureMediatR();
+builder.Services.ConfigureValidators();
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
+
+app.ApplyMigrations();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        options.RoutePrefix = string.Empty;
+    });
 }
 
 app.UseHttpsRedirection();
 
 app.MapControllers();
+// Middlewares
+app.UseMiddleware<ValidationExceptionHandlingMiddleware>();
+app.UseMiddleware<CustomExceptionHandlingMiddleware>();
 
 app.Run();

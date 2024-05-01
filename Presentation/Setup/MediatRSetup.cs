@@ -1,4 +1,7 @@
-﻿namespace Presentation.Setup;
+﻿using System.Reflection;
+using Application.Behaviors;
+
+namespace Presentation.Setup;
 
 public static class MediatRSetup
 {
@@ -7,8 +10,13 @@ public static class MediatRSetup
     {
         serviceCollection.AddMediatR(cfg =>
         {
-            cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+            var applicationAssembly = AppDomain.CurrentDomain
+                .GetAssemblies()
+                .First(a => a.GetName().Name.Contains("Application"));
+            
+            cfg.RegisterServicesFromAssembly(applicationAssembly);
+            // Pipelines Behavior
+            cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
         });
-        // Pipelines Behavior
     }
 }

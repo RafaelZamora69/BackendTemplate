@@ -1,10 +1,12 @@
 ﻿using Application.Abstractions.Responses;
-using Domain.Entities;
 using MediatR;
 
 namespace Application.Users.Commands.CreateUser;
 
 public sealed record CreateUserCommand(
     string Name,
-    string Password
-    ) : IRequest<Response<User>>;
+    string Surnames,
+    string Password,
+    string Email,
+    string Username
+    ) : IRequest<Response<CreateUserCommandResponse>>;

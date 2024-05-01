@@ -5,20 +5,30 @@ using MediatR;
 
 namespace Application.Users.Commands.CreateUser;
 
-internal sealed class CreateUserCommandHandler(
-    IUserRepository userRepository
-    ) : IRequestHandler<CreateUserCommand, Response<User>>
+internal sealed class CreateUserCommandHandler(IUserRepository userRepository) 
+    : IRequestHandler<CreateUserCommand, Response<CreateUserCommandResponse>>
 {
-    public async Task<Response<User>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+    public async Task<Response<CreateUserCommandResponse>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
         var user = new User
         {
             Name = request.Name,
-            Password = request.Password
+            Guid = Guid.NewGuid(),
+            Surnames = request.Surnames,
+            Password = request.Password,
+            Username = request.Username,
+            Email = request.Email
         };
 
         user = await userRepository.CreateUser(user);
 
-        return new Response<User>(user);
+        var response = new CreateUserCommandResponse(
+            user.Guid,
+            user.Name,
+            user.Surnames,
+            user.Email,
+            user.Username);
+
+        return new Response<CreateUserCommandResponse>(response);
     }
 }

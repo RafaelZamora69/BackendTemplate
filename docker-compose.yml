@@ -17,7 +17,8 @@ services:
     ports:
       - "3310:3306"
     environment:
-      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 1
-      MARIADB_ROOT_PASSWORD: ""
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=1
+      - MARIADB_ROOT_PASSWORD=""
+      - MARIADB_DATABASE="gestion_ppi_gasolineras"
     volumes:
       - ./mariadb:/var/lib/mysql
