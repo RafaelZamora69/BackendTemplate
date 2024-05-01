@@ -1,12 +1,13 @@
-﻿using Application.Abstractions.Responses;
+﻿using Application.Abstractions.Commands;
+using Application.Abstractions.Responses;
 using MediatR;
 
 namespace Application.Users.Commands.CreateUser;
 
-public sealed record CreateUserCommand(
+public record CreateUserCommand(
     string Name,
     string Surnames,
     string Password,
     string Email,
     string Username
-    ) : IRequest<Response<CreateUserCommandResponse>>;
+    ) : BaseCommand<CreateUserCommandResponse>;

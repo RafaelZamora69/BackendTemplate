@@ -10,5 +10,7 @@ public static class DependencyInjectionSetup
     {
         // Todas las dependecias del DI Container deben de ser Scoped
         serviceCollection.AddScoped<IUserRepository, UserRepository>();
+        serviceCollection.AddScoped<IRoleRepository, RoleRepository>();
+        serviceCollection.AddScoped<IPermissionRepository, PermissionRepository>();
     }
 }

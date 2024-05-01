@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MariaDbContext))]
-    [Migration("20240501164007_CreateRolesAndPermissionsTable")]
+    [Migration("20240501211053_CreateRolesAndPermissionsTable")]
     partial class CreateRolesAndPermissionsTable
     {
         /// <inheritdoc />

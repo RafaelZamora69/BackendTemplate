@@ -17,6 +17,7 @@ public static class MediatRSetup
             cfg.RegisterServicesFromAssembly(applicationAssembly);
             // Pipelines Behavior
             cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
+            cfg.AddOpenBehavior(typeof(DatabaseTransactionBehavior<,>));
         });
     }
 }

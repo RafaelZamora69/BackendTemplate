@@ -37,4 +37,5 @@ public class UserRepository(MariaDbContext context) : IUserRepository
 
         return user;
     }
+
 }

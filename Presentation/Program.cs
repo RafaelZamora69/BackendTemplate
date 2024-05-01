@@ -62,6 +62,9 @@ app.UseHttpsRedirection();
 app.MapControllers();
 // Middlewares
 app.UseMiddleware<ValidationExceptionHandlingMiddleware>();
-app.UseMiddleware<CustomExceptionHandlingMiddleware>();
+if (app.Environment.IsProduction())
+{
+    app.UseMiddleware<CustomExceptionHandlingMiddleware>();
+}
 
 app.Run();
