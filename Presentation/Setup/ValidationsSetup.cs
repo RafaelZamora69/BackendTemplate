@@ -10,7 +10,6 @@ public static class ValidationsSetup
     public static void ConfigureValidators(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>();
-        // serviceCollection.AddValidatorsFromAssemblyContaining<CreateRoleCommandValidator>();
     }
     
 }

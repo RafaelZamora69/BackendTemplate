@@ -6,7 +6,7 @@ using ValidationException = Application.Abstractions.Exceptions.ValidationExcept
 namespace Application.Behaviors;
 
 public sealed class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TRequest>> validators)
-    : IPipelineBehavior<TRequest, TResponse>
+    : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
 {
 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)

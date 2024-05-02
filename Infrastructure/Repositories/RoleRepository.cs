@@ -17,18 +17,16 @@ public class RoleRepository(MariaDbContext context) : IRoleRepository
         return role;
     }
 
-    public async Task AssignPermissions(Role role, List<int> permissions)
+    public async Task AssignPermissions(Role role, List<int> permissionsId)
     {
-        // permissions.ForEach(id =>
-        // {
-        //     var permission = context.Permissions
-        //         .FirstOrDefault(p => p.Id == id);
-        //     
-        //     if (permission is null) throw new PermissionNotFoundException(id);
-        //     
-        //     role.Permissions.Add(permission);
-        // });
-        
+        var permissions =  context.Permissions
+            .Where(p => permissionsId.Any(id => p.Id == id));
+
+        foreach (var permission in permissions)
+        {
+            role.Permissions.Add(permission);
+        }
+
         await context.SaveChangesAsync();
     }
 }

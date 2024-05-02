@@ -6,5 +6,5 @@ public interface IRoleRepository
 {
     Task<Role> CreateRole(Role role);
 
-    Task AssignPermissions(Role role, List<int> permissions);
+    Task AssignPermissions(Role role, List<int> permissionsId);
 }

@@ -1,13 +1,9 @@
 ﻿using Application.Abstractions.Commands;
+using Domain.Entities;
 
 namespace Application.Roles.Commands.CreateRole;
 
 public record CreateRoleCommand(
     string name,
-    List<CreateRoleCommandPermission> permissions
+    List<Permission> permissions
     ) : BaseCommand<CreateRoleCommandResponse>;
-
-public struct CreateRoleCommandPermission
-{
-    public int Id { get; set; }
-}
