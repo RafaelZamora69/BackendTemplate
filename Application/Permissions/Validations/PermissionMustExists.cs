@@ -3,9 +3,10 @@ using Domain.Repositories;
 using FluentValidation;
 using FluentValidation.Validators;
 
-namespace Application.Roles.Validations;
+namespace Application.Permissions.Validations;
 
-public class PermissionsMustExistsValidator<T>(IPermissionRepository repository) : AsyncPropertyValidator<T, IList<Permission>>
+public class PermissionsMustExistsValidator<T>(IPermissionRepository repository) 
+    : AsyncPropertyValidator<T, IList<Permission>>
 {
     
     public override string Name { get; }
@@ -19,7 +20,7 @@ public class PermissionsMustExistsValidator<T>(IPermissionRepository repository)
             context.AddFailure($"El permiso: {value.ElementAt(i).Id} no es valido");
         }
         
-        return await Task.FromResult(true);
+        return true;
     }
 
 }

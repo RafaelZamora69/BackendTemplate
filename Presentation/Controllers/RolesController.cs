@@ -1,14 +1,14 @@
-﻿using Application.Abstractions.Responses;
+﻿using Application.Abstractions.Attributes;
+using Application.Abstractions.Responses;
 using Application.Roles.Commands.CreateRole;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controllers;
 
 public class RolesController : BaseController
 {
-    [AllowAnonymous]
     [HttpPost]
+    [Can("users:create")]
     public async Task<Response<CreateRoleCommandResponse>> Create([FromBody] CreateRoleCommand command)
     {
 

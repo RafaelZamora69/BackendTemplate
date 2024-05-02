@@ -1,4 +1,4 @@
-﻿using Application.Roles.Validations;
+﻿using Application.Permissions.Validations;
 using Domain.Repositories;
 using FluentValidation;
 
@@ -7,7 +7,7 @@ namespace Application.Roles.Commands.CreateRole;
 public class CreateRoleCommandValidator : AbstractValidator<CreateRoleCommand>
 {
 
-    public CreateRoleCommandValidator(IPermissionRepository permissionRepository)
+    public CreateRoleCommandValidator(IPermissionRepository repository)
     {
         RuleFor(x => x.name)
             .NotEmpty()
@@ -22,7 +22,7 @@ public class CreateRoleCommandValidator : AbstractValidator<CreateRoleCommand>
             .WithMessage("El nombre solo debe contener letras.");
 
         RuleFor(x => x.permissions)
-            .SetAsyncValidator(new PermissionsMustExistsValidator<CreateRoleCommand>(permissionRepository));
+            .SetAsyncValidator(new PermissionsMustExistsValidator<CreateRoleCommand>(repository));
     }
     
 }

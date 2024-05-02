@@ -29,4 +29,10 @@ public class RoleRepository(MariaDbContext context) : IRoleRepository
 
         await context.SaveChangesAsync();
     }
+
+    public async Task<Role?> FindRole(int id)
+    {
+        return await context.Roles
+            .FirstOrDefaultAsync(r => r.Id == id);
+    }
 }

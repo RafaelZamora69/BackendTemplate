@@ -1,5 +1,7 @@
-﻿using Domain.Repositories;
+﻿using Application.Auth;
+using Domain.Repositories;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Presentation.Setup;
 
@@ -12,5 +14,6 @@ public static class DependencyInjectionSetup
         serviceCollection.AddScoped<IUserRepository, UserRepository>();
         serviceCollection.AddScoped<IRoleRepository, RoleRepository>();
         serviceCollection.AddScoped<IPermissionRepository, PermissionRepository>();
+        serviceCollection.AddScoped<IAuthorizationHandler, CanAuthorizationHandler>();
     }
 }

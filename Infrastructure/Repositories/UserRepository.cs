@@ -38,4 +38,15 @@ public class UserRepository(MariaDbContext context) : IUserRepository
         return user;
     }
 
+    public async Task<User?> Find(int id)
+    {
+        return await context.Users
+            .FirstOrDefaultAsync(u => u.Id == id);
+    }
+
+    public async Task<User?> Find(Guid guid)
+    {
+        return await context.Users
+            .FirstOrDefaultAsync(u => u.Guid == guid);
+    }
 }

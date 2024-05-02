@@ -17,7 +17,7 @@ public sealed class JwtManager(IConfiguration configuration)
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
-                new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new(ClaimTypes.NameIdentifier, user.Guid.ToString()),
                 new(ClaimTypes.Name, user.Username)
             }),
             Expires = DateTime.UtcNow.AddHours(1),

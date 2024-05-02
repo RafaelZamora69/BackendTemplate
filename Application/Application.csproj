@@ -14,10 +14,10 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.9.1" />
     <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="8.0.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstractions\Attributes\" />
     <Folder Include="Roles\Commands\" />
     <Folder Include="Roles\Queries\" />
   </ItemGroup>
