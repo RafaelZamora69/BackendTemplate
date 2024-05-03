@@ -1,5 +1,4 @@
-﻿using Application.Auth;
-using Domain.Repositories;
+﻿using Domain.Repositories;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authorization;
 

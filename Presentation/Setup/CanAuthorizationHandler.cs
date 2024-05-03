@@ -3,7 +3,7 @@ using Application.Abstractions.Attributes;
 using Domain.Repositories;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Application.Auth;
+namespace Presentation.Setup;
 
 public class CanAuthorizationHandler(IUserRepository userRepository, IPermissionRepository permissionRepository)
     : AuthorizationHandler<CanAttribute>
