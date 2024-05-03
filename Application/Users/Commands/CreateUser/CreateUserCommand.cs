@@ -4,7 +4,6 @@ using Domain.Entities;
 
 namespace Application.Users.Commands.CreateUser;
 
-[Can("users:create")]
 public record CreateUserCommand(
     string Name,
     string Surnames,

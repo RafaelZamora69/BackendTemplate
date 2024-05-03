@@ -18,7 +18,7 @@ public class PermissionRepository(MariaDbContext context) : IPermissionRepositor
                         $"     On t3.Id = t2.RolesId " +
                         $"  Inner Join Users t4 " +
                         $"     On t4.Id = {user.Id} " +
-                        $"Where t1.Code = {code}")
+                        $"Where t1.Code = '{code}'")
             .ToList()
             .Count > 0;
     }

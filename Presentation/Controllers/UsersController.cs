@@ -1,4 +1,5 @@
-﻿using Application.Abstractions.Responses;
+﻿using Application.Abstractions.Attributes;
+using Application.Abstractions.Responses;
 using Application.Users.Commands.CreateUser;
 using Application.Users.Queries;
 using Microsoft.AspNetCore.Authorization;
@@ -16,9 +17,9 @@ public class UsersController : BaseController
     }
     
     [HttpPost]
+    [Can("users:create")]
     public async Task<Response<CreateUserCommandResponse>> Register([FromBody] CreateUserCommand command)
     {
         return await Mediator.Send(command);
     }
-    
 }
